@@ -72,4 +72,8 @@ Relativamente à sua estrutura, este encontra-se estruturado da seguinte maneira
   ```javascript
   var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
   ```
+  ```javascript
+  var overlayMaps = {
+    "Casos covid por 10mil hab": casos10klayer
+  ```
 - Para uma fácil interpretação dos dados ao nível do concelho, foi necessário a criação de um controlo de informações, sendo este exibido de forma a apresentar informações sobre um determinado concelho.
