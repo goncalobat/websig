@@ -158,7 +158,7 @@ function resetHighlight(e) {
     this.update();
     return this._div;
   };
-  // method that we will use to update the control based on feature properties passed
+  
   info.update = function (props) {
     this._div.innerHTML = '<h4>Número de Casos COVID por Concelho</h4>' +  (props ?
         '<b>' + props.Concelho + '</b><br />' + props.Casos_23_1 + ' Casos por 10 mil hab.'
