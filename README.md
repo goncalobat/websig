@@ -6,39 +6,39 @@ O presente código HTML foi usado para a respetiva criação de um mapa relativo
 
 Relativamente à sua estrutura, este encontra-se estruturado da seguinte maneira:
 
-- Na parte denominada como <head>, encontram-se todas as bibliotecas que foram usadas e também os estilos utilizados para a criação do mapa em questão;
+- Na parte denominada como '<head>', encontram-se todas as bibliotecas que foram usadas e também os estilos utilizados para a criação do mapa em questão;
 
-- Na secção <body> é onde se encontra a estrutura da página, incluindo a div onde por sua vez, o mapa será apresentado;
+- Na secção '<body>' é onde se encontra a estrutura da página, incluindo a div onde por sua vez, o mapa será apresentado;
 
-- Por último, no fim do arquivo, existe um <script>, contendo o código JavaScript, sendo este o responsável pela configuração do mapa a exibir.
+- Por último, no fim do arquivo, existe um '<script>', contendo o código JavaScript, sendo este o responsável pela configuração do mapa a exibir.
 
 ## Configurações
 
-- L.map('map').setView([38.749, -9.155], 13) -> Faz com que o mapa inicie, definindo a sua localização e ainda o nível de zoom pretendido;
+- 'L.map('map').setView([38.749, -9.155], 13)' -> Faz com que o mapa inicie, definindo a sua localização e ainda o nível de zoom pretendido;
 
-- L.tileLayer -> Faz com que se adicione uma layer do OpenStreetMap ao mapa a exibir;
+- 'L.tileLayer' -> Faz com que se adicione uma layer do OpenStreetMap ao mapa a exibir;
 
-- L.tileLayer.wms -> Faz com que se adicione uma layer WMS do GeoServer ao mapa, sendo que foi necessário a utilização de uma shapefile relativa aos concelhos de Portugal continental, tendo sido esta previamente criada.
+- 'L.tileLayer.wms' -> Faz com que se adicione uma layer WMS do GeoServer ao mapa, sendo que foi necessário a utilização de uma shapefile relativa aos concelhos de Portugal continental, tendo sido esta previamente criada.
 
 ## Cores e Estilos do Mapa
 
-- Utilização da função getcor10k(d) para a atribuição de cores, tendo por base o número de casos de COVID-19 por 10.000 habitantes;
+- Utilização da função 'getcor10k(d)' para a atribuição de cores, tendo por base o número de casos de COVID-19 por 10.000 habitantes;
 
-- Para a definição do estilo dos polígonos presentes no mapa, com base mais uma vez, nos dados de COVID-19 por 10.000 habitantes, recorreu-se ao uso da função estilo10k(feature).
+- Para a definição do estilo dos polígonos presentes no mapa, com base mais uma vez, nos dados de COVID-19 por 10.000 habitantes, recorreu-se ao uso da função 'estilo10k(feature)'.
 
 ## Criação de Layers
 
-- L.geoJSON(casos10kData) permite a criação de uma layer (polígonos) no mapa, usando os dados geoJSON relativos aos casos COVID-19 por 10.000 habitantes;
+- 'L.geoJSON(casos10kData)' permite a criação de uma layer (polígonos) no mapa, usando os dados geoJSON relativos aos casos COVID-19 por 10.000 habitantes;
 
-- L.markerClusterGroup() permite a criação de clusters, de modo a permitir a visualização dos marcadores referentes aos casos de COVID-19, criando assim clusters (pontos) com o número de casos ao se agruparem ao longo do mapa.
+- 'L.markerClusterGroup()' permite a criação de clusters, de modo a permitir a visualização dos marcadores referentes aos casos de COVID-19, criando assim clusters (pontos) com o número de casos ao se agruparem ao longo do mapa.
 
 ## Controlos e Legenda
 
-- L.control.scale() -> Permite adicionar uma escala ao mapa criado;
+- 'L.control.scale()' -> Permite adicionar uma escala ao mapa criado;
 
-- L.control.layers -> Permite selecionar a camada a visualizar;
+- 'L.control.layers' -> Permite selecionar a camada a visualizar;
 
-- L.control({position: 'bottomright')} -> Permite que a legenda esteja disposta na parte inferior direita do mapa ao ser exibido.
+- 'L.control({position: 'bottomright')}' -> Permite que a legenda esteja disposta na parte inferior direita do mapa ao ser exibido.
 
 ## Funcionalidades do Mapa
 
