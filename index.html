@@ -1,0 +1,219 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <title>Casos COVID por Concelho</title>
+
+  <link rel="stylesheet" href="js/leaflet.css"> 
+  <link rel="stylesheet" href="dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="dist/MarkerCluster.Default.css" />
+
+  <script src="js/leaflet.js"></script>
+  <script src="dist/leaflet.markercluster.js"></script>
+
+  
+ </script>
+
+
+  <style>
+    #map{ height: 90%;
+          margin: 0;
+        }
+
+    .info {
+      padding: 6px 8px;
+      font: 14px/16px Arial, Helvetica, sans-serif;
+      background: white;
+      background: rgba(255,255,255,0.8);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 5px;
+    }
+    .info h4 {
+      margin: 0 0 5px;
+      color: #777;
+    }
+
+    .legend {
+      line-height: 18px;
+      color: #555;
+    }
+    .legend i {
+      width: 18px;
+      height: 18px;
+      float: left;
+      margin-right: 8px;
+      opacity: 0.7;
+    }
+
+    .leaflet-control-layers {
+      font-family: Arial, sans-serif;
+      background-color: white;
+      border-radius: 5px;
+      padding: 6px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    .leaflet-control-layers label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    </style>
+
+</head>
+
+<body>
+
+  <div id="map"></div>
+  <script src="data/casos.geojson"></script>
+  <script src="data/casospor10khab.geojson"></script>
+  
+  <script>
+
+  // iniciar mapa
+  var map = L.map('map').setView([38.749, -9.155], 10);
+
+  // Carregar um serviço de mapas como mapa base
+	  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 15,
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+
+// Cores da Variável
+  function colorcasospor10khab(d) {
+    return d > 10 ? '#800026' :
+      d > 8   ? '#FC4E2A' :
+      d > 6   ? '#FD8D3C' :
+      d > 4   ? '#FEB24C' :
+      d > 2   ? '#FED976' : '#FFEDA0';           
+  }
+
+//Style Variável
+  function casospor10khabStyle(feature) {
+    return {
+        fillColor: colorcasospor10khab(feature.properties.Casos_23_1),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+  }
+
+//Funções da Layer
+  function highlightFeature(e) {
+  var layer = e.target;
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+    layer.bringToFront();
+    info.update(layer.feature.properties);
+  }
+
+function resetHighlight(e) {
+    casos10klayer.resetStyle(e.target);
+    info.update();
+  }
+
+  function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+  }
+
+  function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+  }
+
+  //Adicionar a Layer (casospor10khab)
+  casos10klayer = L.geoJson(casos10kData, {
+      style: casospor10khabStyle,
+      onEachFeature: onEachFeature
+    }).addTo(map);
+
+  //Adicionar o Layer (casos) 
+  var markers = L.markerClusterGroup();
+  var casosLayer = L.geoJson(casospoint,{
+      onEachFeature: function (feature, layer) {
+        var mes1Value = parseInt(feature.properties.mes1);
+      
+      console.log(mes1Value);
+
+      layer.bindPopup(mes1Value.toString());
+    }
+  });
+
+  markers.addLayer(casosLayer);
+  map.addLayer(markers);
+
+  //Adicionar o Control
+  var info = L.control();
+  info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); 
+    this.update();
+    return this._div;
+  };
+  // method that we will use to update the control based on feature properties passed
+  info.update = function (props) {
+    this._div.innerHTML = '<h4>Número de Casos COVID por Concelho</h4>' +  (props ?
+        '<b>' + props.Concelho + '</b><br />' + props.Casos_23_1 + ' Casos por 10 mil hab.'
+        : 'Selecione um concelho');
+  };
+  info.addTo(map);
+
+//Legenda
+  var legend = L.control({position: 'bottomright'});
+  legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 2, 4, 6, 8, 10],
+        labels = [];
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + colorcasospor10khab(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+    return div;
+  };
+  legend.addTo(map);
+
+ //Escala
+  L.control.scale().addTo(map);
+
+
+var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+}).addTo(map);
+
+var baseMaps = {
+    "OpenStreetMap": osm
+    
+};
+
+var overlayMaps = {
+    "Casos covid por 10mil hab": casos10klayer
+
+};
+
+  //Adicionar o Control das Layers
+  //L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+  </script>
+
+</body>
+
+</html>
+
+
+
+
+
+
