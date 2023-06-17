@@ -190,12 +190,13 @@ var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
 }).addTo(map);
-
+	  
+//BaseMap
 var baseMaps = {
     "OpenStreetMap": osm
     
 };
-
+   //Overlay dos Mapas
 var overlayMaps = {
     "Casos covid por 10mil hab": casos10klayer
 
