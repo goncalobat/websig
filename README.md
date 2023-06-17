@@ -50,6 +50,7 @@ Relativamente à sua estrutura, este encontra-se estruturado da seguinte maneira
 - Os marcadores (markers) também são outro ponto fundamental para ser adicionado e apresentado no mapa, dado que dizem respeito aos casos de COVID-19, sendo estes criados mais uma vez, com base em dados geoJSON. Posteriormente estes são agregados usando-se uma extensão específica: Leaflet.MarkerCluster;
 - Há a criação de uma legenda, estando esta localizada no canto inferior direito do mapa. Esta irá possibilitar uma melhor clareza e interpretação na análise dos dados (casos COVID-19) apresentados no mapa;
 - O mapa apresenta também funções de  zoom e de destacamento, ou seja, são criadas funções de maneira que seja possível o destacar de dados polígonos ao se mover o rato por cima, e ainda, caso necessário, o seu ajustamento;
-- Uma outra função presente no mapa é o facto de ser possível saber o número de casos de COVID-19 por 10 mil habitantes clicando no marcador referente a cada concelho, tendo-se utilizado uma expressão específica: 
+- Uma outra função presente no mapa é o facto de ser possível saber o número de casos de COVID-19 por 10 mil habitantes clicando no marcador referente a cada concelho, tendo-se utilizado uma expressão específica: ```javascript
+  
 - Os controlos de layer são criados para ser possível a alternação entre a layer base e a de sobreposição;
 - Para uma fácil interpretação dos dados ao nível do concelho, foi necessário a criação de um controlo de informações, sendo este exibido de forma a apresentar informações sobre um determinado concelho.
