@@ -14,7 +14,7 @@ Relativamente à sua estrutura, este encontra-se estruturado da seguinte maneira
 
 ## Configurações
 
-- `L.map('map').setView([38.749, -9.155], 13)` -> Faz com que o mapa inicie, definindo a sua localização e ainda o nível de zoom pretendido;
+- `L.map('map').setView([38.749, -9.155], 10)` -> Faz com que o mapa inicie, definindo a sua localização e ainda o nível de zoom pretendido;
 
 - `L.tileLayer` -> Faz com que se adicione uma layer do `OpenStreetMap` ao mapa a exibir;
 
