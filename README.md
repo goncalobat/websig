@@ -69,4 +69,7 @@ Relativamente à sua estrutura, este encontra-se estruturado da seguinte maneira
       }
   ```
 - Os controlos de layer são criados para ser possível a alternação entre a layer base e a de sobreposição;
+  ```javascript
+  var layerControl = L.control.layers(baseMaps, overlayMaps).addTo(map);
+  ```
 - Para uma fácil interpretação dos dados ao nível do concelho, foi necessário a criação de um controlo de informações, sendo este exibido de forma a apresentar informações sobre um determinado concelho.
