@@ -172,7 +172,7 @@ function resetHighlight(e) {
     var div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 2, 4, 6, 8, 10],
         labels = [];
-    // loop through our density intervals and generate a label with a colored square for each interval
+    
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
             '<i style="background:' + colorcasospor10khab(grades[i] + 1) + '"></i> ' +
