@@ -22,9 +22,9 @@ Relativamente à sua estrutura, este encontra-se estruturado da seguinte maneira
 
 ## Cores e Estilos do Mapa
 
-- Utilização da função `getcor10k(d)` para a atribuição de cores, tendo por base o número de casos de COVID-19 por 10.000 habitantes;
+- Utilização da função `colorcasospor10khab(d)` para a atribuição de cores, tendo por base o número de casos de COVID-19 por 10.000 habitantes;
 
-- Para a definição do estilo dos polígonos presentes no mapa, com base mais uma vez, nos dados de COVID-19 por 10.000 habitantes, recorreu-se ao uso da função `estilo10k(feature)`.
+- Para a definição do estilo dos polígonos presentes no mapa, com base mais uma vez, nos dados de COVID-19 por 10.000 habitantes, recorreu-se ao uso da função `casospor10khabStyle(feature)`.
 
 ## Criação de Layers
 
