@@ -6,7 +6,7 @@ O presente código HTML foi usado para a respetiva criação de um mapa relativo
 
 Relativamente à sua estrutura, este encontra-se estruturado da seguinte maneira:
 
-- Na parte denominada como '<head>', encontram-se todas as bibliotecas que foram usadas e também os estilos utilizados para a criação do mapa em questão;
+- Na parte denominada como "<head>", encontram-se todas as bibliotecas que foram usadas e também os estilos utilizados para a criação do mapa em questão;
 
 - Na secção '<body>' é onde se encontra a estrutura da página, incluindo a div onde por sua vez, o mapa será apresentado;
 
